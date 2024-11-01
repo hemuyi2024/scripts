@@ -1,3 +1,5 @@
+#lty-2024-11-1
+
 from osgeo import gdal, osr
 
 # 读取遥感影像文件路径
