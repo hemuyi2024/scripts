@@ -1,10 +1,13 @@
-#lty-2024-11-1
-
 from osgeo import gdal, osr
+import sys
 
-# 读取遥感影像文件路径
-# raster_file = "E:\\Project\\Banqiao_DOM\\result.tif"
-raster_file = "E:\\datasets\\SEU\\2024-10-30.tif"
+# 检查是否提供了文件路径参数
+if len(sys.argv) != 2:
+    print("用法: python script_name.py <影像文件路径>")
+    sys.exit(1)
+
+# 获取命令行参数中的影像文件路径
+raster_file = sys.argv[1]
 
 # 打开遥感影像文件
 dataset = gdal.Open(raster_file)
@@ -12,8 +15,8 @@ if dataset is None:
     print("无法打开影像文件。")
 else:
     # 获取地理变换参数和投影信息
-    geotransform = dataset.GetGeoTransform()#主要是需要这个
-    print(geotransform)
+    geotransform = dataset.GetGeoTransform()  # 主要是需要这个
+    print("地理变换参数:", geotransform)
     proj = dataset.GetProjection()
     spatial_ref = osr.SpatialReference()
     spatial_ref.ImportFromWkt(proj)
