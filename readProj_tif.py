@@ -17,10 +17,14 @@ else:
     # 获取地理变换参数和投影信息
     geotransform = dataset.GetGeoTransform()  # 主要是需要这个
     print("地理变换参数:", geotransform)
+    #save the geotransform
+    with open("seu_geotransform_m300.txt", "w") as f:
+        for value in geotransform:
+            f.write(f"{value}\n")
     proj = dataset.GetProjection()
     spatial_ref = osr.SpatialReference()
     spatial_ref.ImportFromWkt(proj)
-
+    print("投影信息:", spatial_ref)
     # 打印投影坐标信息 (Proj4 格式)
     if spatial_ref:
         proj4_str = spatial_ref.ExportToProj4()
@@ -38,4 +42,6 @@ else:
         # 将地理坐标转换为经纬度
         coord_transform = osr.CoordinateTransformation(spatial_ref, spatial_ref.CloneGeogCS())
         lon, lat, _ = coord_transform.TransformPoint(geo_x, geo_y)
+
         print(f"像素坐标 ({pixel_x}, {pixel_y}) 转换为经纬度坐标: 经度 {lon}, 纬度 {lat}")
+        print(f"像素坐标 ({pixel_x}, {pixel_y}) 转换为地理坐标: x={geo_x}, y={geo_y}")

@@ -67,8 +67,8 @@ def resize_tif(input_tif, output_tif, scale_factor):
     print(f"TIFF 文件已成功缩放并保存到: {output_tif}")
 
 if __name__ == '__main__':
-    input_tif = "/home/lty/data/SEU/seu_cut.tif"
-    output_tif = "/home/lty/data/SEU/seu_resized/seu_resized.tif"
+    input_tif = "/home/lty/data/SEU/seu_0103_cut_fix.tif"
+    output_tif = "/home/lty/data/SEU/seu_resized/seu_resized_m300.tif"
     scale_x = 0.2
     scale_y = 0.5
     resize_tif(input_tif, output_tif, scale_x)

@@ -2,8 +2,8 @@ import cv2
 import os
 
 # 视频文件路径
-videoFile = "C:\\Users\\hp\\Desktop\\DJI_0022.MOV"  # 修改为你的视频路径
-outputFolder = "C:\\Users\\hp\\Desktop\\calibr" # 修改为输出图片的文件夹
+videoFile = '/home/lty/datasets_my/DJI/m300/DJI_0110_0011_W.MP4'  # 修改为你的视频路径
+outputFolder = '/home/lty/datasets_my/DJI/m300/seu_uav_0110_11' # 修改为输出图片的文件夹
 
 # 创建输出文件夹
 if not os.path.exists(outputFolder):
@@ -16,18 +16,22 @@ if not cap.isOpened():
     exit()
 
 frameNumber = 0
-
+imgNumber = 0
 # 提取视频帧并保存为图片
 while True:
     ret, frame = cap.read()
     if not ret:
         break
 
-    # 保存每一帧为图像
-    filename = os.path.join(outputFolder, f"frame_{frameNumber:05d}.png")
-    cv2.imwrite(filename, frame)
+    # 保存每n帧为图像
+    if frameNumber %30 == 0:
+        filename = os.path.join(outputFolder, f"{imgNumber:05d}.png")
+        cv2.imwrite(filename, frame)
+        print(f"saved image: {filename}")
+        imgNumber += 1
 
     frameNumber += 1
 
 cap.release()
 print("视频帧提取完成。")
+print(f"总共提取了 {imgNumber} 张图片。")
