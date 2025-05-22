@@ -18,7 +18,7 @@ else:
     geotransform = dataset.GetGeoTransform()  # 主要是需要这个
     print("地理变换参数:", geotransform)
     #save the geotransform
-    with open("seu_geotransform_m300.txt", "w") as f:
+    with open("geotransform.txt", "w") as f:
         for value in geotransform:
             f.write(f"{value}\n")
     proj = dataset.GetProjection()

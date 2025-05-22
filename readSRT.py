@@ -43,7 +43,7 @@ def extract_lat_lon_from_srt(srt_file_path, output_file_path):
 
 if __name__ == "__main__":
     # 指定SRT文件的路径和输出文件的路径
-    input_srt = '/home/lty/datasets_my/DJI/m300/DJI_0110_2_W.SRT'      # 替换为你的SRT文件路径
-    output_txt = '/home/lty/datasets_my/DJI/m300/DJI_0103_2_W_gt.txt'    # 替换为你希望保存的TXT文件路径
+    input_srt = '/home/lty/datasets_my/DJI/m300/DJI_0110_6_W.SRT'      # 替换为你的SRT文件路径
+    output_txt = '/home/lty/datasets_my/DJI/m300/DJI_0110_6_W_gt.txt'    # 替换为你希望保存的TXT文件路径
 
     extract_lat_lon_from_srt(input_srt, output_txt)
